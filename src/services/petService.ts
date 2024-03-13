@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Pet } from "../models/pet";
+import { Pet } from "../models/Pet";
 
 const apiURL = process.env.REACT_APP_API_URL + "pets" || "";
 //if you give me a search term it will look, if not it just lists all the pets as an array of pets
