@@ -1,5 +1,6 @@
 import { Card } from "react-bootstrap";
 import { Pet } from "../models/Pet";
+import "./css/petcard.css";
 
 //using props to bring in information
 
@@ -16,13 +17,16 @@ export function PetCard(props: PetCardProps) {
       <Card.Body>
         <Card.Title>
           {props.pet.name}
+          <br />
           {props.pet.breed}
         </Card.Title>
         {props.pet.description}
+      </Card.Body>
+      <Card.Footer>
         <button className="btn btn-primary">Book A Viewing</button>
         <button className="btn btn-primary">Adopt Me</button>
         <button className="btn btn-primary">Details</button>
-      </Card.Body>
+      </Card.Footer>
     </Card>
   );
 }
