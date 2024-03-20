@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { Pet } from "../models/Pet";
 import { getPets } from "../services/petService";
 import { PetCard } from "./PetCard";
+import "./css/petlist.css";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -20,7 +21,7 @@ export function PetList() {
     <div className="PetList">
       <Row>
         {pets.map((pet) => (
-          <Col lg={4}>
+          <Col lg={4} className="grid-gap">
             <PetCard pet={pet} />
           </Col>
         ))}
