@@ -16,14 +16,18 @@ export default function PetDetails() {
     }
   }, [id]);
 
+  //to do:style this card better
   return (
     <div className="PetDetails">
-      {pet && ( //THIS BRACKET...?
+      {pet && (
         <Row>
           <Col lg={2}></Col>
           <Col lg={8}>
             <Card>
-              <Card.Img variant="top" src={`img/${pet.image}`}></Card.Img>
+              <img
+                className="img-fluid rounded-start"
+                src={`img/${pet.image}`}
+              ></img>
               <Card.Body>
                 <Card.Title>{pet.name}</Card.Title>
                 <Card.Text>
@@ -32,12 +36,11 @@ export default function PetDetails() {
                 <Card.Text>{pet.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <button className="btn btn-primary">Adopt `${pet.name}`</button>
-                <Link
-                  to={`/details/${pet.id}`}
-                  className="btn btn-secondary ml-2"
-                >
-                  Details
+                <button className="btn btn-primary">Book A Viewing</button>
+
+                <Link to={`adoptions/${pet.id}`} className="btn btn-primary">
+                  {" "}
+                  Adoption forms for {pet.name}
                 </Link>
               </Card.Footer>
             </Card>

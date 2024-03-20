@@ -7,13 +7,13 @@ import { Footer } from "./components/Footer";
 import { Counter } from "./components/Counter";
 import { PetList } from "./components/PetList";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { PetadoptionForm } from "./components/PetAdoptionForm";
 //todo pass props correctly from details card
 function App() {
   return (
     <div className="App">
       <Header />
-      <Footer />
-      <Counter />
+
       <Router>
         <Routes>
           <Route path="/" element={<PetList></PetList>}></Route>
@@ -21,8 +21,10 @@ function App() {
             path="/details/:id"
             element={<PetDetails></PetDetails>}
           ></Route>
+          <Route path="/adoptions/:id" element={<PetadoptionForm />}></Route>
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
