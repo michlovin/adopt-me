@@ -24,10 +24,10 @@ export default function PetDetails() {
           <Col lg={2}></Col>
           <Col lg={8}>
             <Card>
-              <img
+              <Card.Img
                 className="img-fluid rounded-start"
                 src={`img/${pet.image}`}
-              ></img>
+              ></Card.Img>
               <Card.Body>
                 <Card.Title>{pet.name}</Card.Title>
                 <Card.Text>
@@ -38,7 +38,7 @@ export default function PetDetails() {
               <Card.Footer>
                 <button className="btn btn-primary">Book A Viewing</button>
 
-                <Link to={`adoptions/${pet.id}`} className="btn btn-primary">
+                <Link to={`/adoptions/${pet.id}`} className="btn btn-primary">
                   {" "}
                   Adoption forms for {pet.name}
                 </Link>
