@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Form, Row, Col, Button, Alert } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { AdoptionForm } from "../models/AdoptionForm";
 import { getPetById } from "../services/petService";
 
 export function PetadoptionForm() {
+  // eslint-disable-next-line no-unused-vars
   const [pet, setPet] = useState<Pet | null>(null);
-  const { id } = useParams();
+
   const [formValues, setFormValues] = useState<AdoptionForm>({
     firstName: "",
     lastName: "",
@@ -18,6 +19,8 @@ export function PetadoptionForm() {
     hasOtherPets: false,
     moreDescription: "",
   });
+
+  const { id } = useParams();
 
   useEffect(() => {
     if (id !== undefined) {
@@ -30,14 +33,14 @@ export function PetadoptionForm() {
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
-  };
 
-  //Spread operator go though all the properties and fill everything in for me.
-  //for the value that has the assigned name assign the value that i have stated
-  setFormValues((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
+    //Spread operator go though all the properties and fill everything in for me.
+    //for the value that has the assigned name assign the value that i have stated
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   // function onSubmit(e: React.ChangeEvent<HTMLInputElement>) {
   //   e.prevent.Default();
