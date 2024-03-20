@@ -1,3 +1,21 @@
+
+
+
+
+![Screenshot 2024-03-20 at 2 45 47 PM](https://github.com/michlovin/adopt-me/assets/26153666/9ee10ebd-d850-437a-804f-84aff8c42b9d)
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
