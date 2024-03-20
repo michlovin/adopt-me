@@ -4,7 +4,6 @@ import "./App.css";
 import PetDetails from "./components/PetDetailsCard";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Counter } from "./components/Counter";
 import { PetList } from "./components/PetList";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { PetadoptionForm } from "./components/PetAdoptionForm";
