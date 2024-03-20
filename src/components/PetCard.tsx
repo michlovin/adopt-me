@@ -24,8 +24,8 @@ export function PetCard(props: PetCardProps) {
       </Card.Body>
       <Card.Footer>
         <button className="btn btn-primary">Book A Viewing</button>
-        <button className="btn btn-primary">Adopt Me</button>
-        <button className="btn btn-primary">Details</button>
+        {/* <button className="btn btn-primary">Adopt Me</button>
+        <button className="btn btn-primary">Details</button> */}
       </Card.Footer>
     </Card>
   );
