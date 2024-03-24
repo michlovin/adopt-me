@@ -1,4 +1,5 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "../components/css/header.css";
 
 export function Header() {
@@ -11,9 +12,11 @@ export function Header() {
             <h1 className="text-left text-black">Adopt Me</h1>
           </Navbar.Brand>
           <Nav className="mx-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Pet Care</Nav.Link>
-            <Nav.Link href="#pricing">Adoptions</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="#PetCare">Pet Care</Nav.Link>
+            <Nav.Link href="#Adoptions">Adoptions</Nav.Link>
+            <Nav.Link href="/intake">Community Support</Nav.Link>
+            <Nav.Link href="/donate">Donate</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

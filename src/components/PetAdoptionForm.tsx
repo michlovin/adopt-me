@@ -13,7 +13,7 @@ export function PetadoptionForm() {
   const [formValues, setFormValues] = useState<AdoptionForm>({
     firstName: "",
     lastName: "",
-    phoneNumer: "",
+    phoneNumber: "",
     email: "",
     fencedYard: false,
     hasKids: false,
@@ -95,7 +95,7 @@ export function PetadoptionForm() {
                 <Form.Control
                   type="text"
                   name="phoneNumber"
-                  value={formValues.phoneNumer}
+                  value={formValues.phoneNumber}
                   onChange={handleChange}
                 ></Form.Control>
               </Form.Group>
