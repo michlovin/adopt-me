@@ -28,11 +28,8 @@ export function PetCard(props: PetCardProps) {
         {props.pet.description}
       </Card.Body>
       <Card.Footer className="space-below">
-        <button className="btn btn-primary">Book A Viewing</button>
-        <Link
-          to={`/details/${props.pet.id}`}
-          className="btn btn-secondary ml-2"
-        >
+        <button className="btn btn-success">Book A Viewing</button>
+        <Link to={`/details/${props.pet.id}`} className="btn btn-success ml-2">
           {props.pet.name}'s Details
         </Link>
       </Card.Footer>
