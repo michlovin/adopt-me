@@ -1,7 +1,7 @@
 export interface AdoptionForm {
   firstName: string;
   lastName: string;
-  phoneNumer: string;
+  phoneNumber: string;
   email: string;
   fencedYard: boolean;
   hasKids: boolean;
