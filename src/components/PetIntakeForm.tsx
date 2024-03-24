@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { IntakeForm } from "../models/IntakeForm";
 import { getPetById } from "../services/petService";
-import { postAdoption } from "../services/adoptionService";
 import { postIntake } from "../services/intakeService";
 
 export function PetIntakeForm() {
@@ -66,7 +65,7 @@ export function PetIntakeForm() {
 
   return (
     <div>
-      <div>Fill out the adoption form for this animal</div>
+      <div>Fill out the surrender form for this animal</div>
       <Row>
         <Col lg={3}></Col>
         <Col lg={4}>
@@ -164,7 +163,7 @@ export function PetIntakeForm() {
                 type="checkbox"
                 id="hasOtherPets"
                 label="Has your animal been raised with other animals if yes list in next question?"
-                name="hasKids"
+                name="hasOtherPets"
                 checked={intakeValues.hasOtherPets}
                 onChange={handleChange}
               />
