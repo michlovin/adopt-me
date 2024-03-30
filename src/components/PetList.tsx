@@ -28,6 +28,7 @@ export function PetList() {
         {pets.map((pet) => (
           <Col lg={4} className="grid-gap">
             <PetCard pet={pet} />
+            <br />
           </Col>
         ))}
         <Col lg={4}></Col>
