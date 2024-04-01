@@ -1,10 +1,10 @@
-import Image from "react-bootstrap/Image";
+import Animal from "./animal2.jpg";
 
 export function HorizontialCard() {
   return (
     <div className="horizontialcardcontainer">
       <div className="card">
-        <Image></Image>
+        <img src="{Animal}" alt="image"></img>
         <div className="title">Title</div>
         <div className="subtext">Subtitle</div>
         <div className="textfield">

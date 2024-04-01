@@ -1,3 +1,8 @@
 .horizontialcardcontainer {
   display: flex;
+  flex-direction: row;
+}
+
+.horizontialcardcontent {
+  align-self: auto;
 }
