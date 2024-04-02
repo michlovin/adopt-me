@@ -1,12 +1,11 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
+import "./css/footer.css";
 
 export function Footer() {
   return (
-    <Row>
+    <Row lg={1}>
       <div className="footer-container">
-        <Col>
-          <p>FOOTER HERE </p>
-        </Col>
+        <Col>{/* <Image> </Image> */}</Col>
         <Col>
           <p>FOOTER HERE </p>
         </Col>

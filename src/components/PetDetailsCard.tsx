@@ -3,6 +3,11 @@ import { Card, Row, Col } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { getPetById } from "../services/petService";
 import { Pet } from "../models/Pet";
+import { BsCalendar3 } from "react-icons/bs";
+import "./css/petdetailscard.css";
+import { BsClipboard2Check } from "react-icons/bs";
+
+import { BsFileText } from "react-icons/bs";
 
 export default function PetDetails() {
   const { id } = useParams();
@@ -36,10 +41,14 @@ export default function PetDetails() {
                 <Card.Text>{pet.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <button className="btn btn-success">Book A Viewing</button>
+                <button className="btn btn-success">
+                  <BsCalendar3 className="svg" />
+                  Book A Viewing
+                </button>
 
                 <Link to={`/adoptions/${pet.id}`} className="btn btn-success">
                   {" "}
+                  <BsClipboard2Check />
                   Adoption forms for {pet.name}
                 </Link>
               </Card.Footer>
