@@ -15,8 +15,10 @@ export function Header() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#PetCare">Pet Care</Nav.Link>
             <Nav.Link href="#Adoptions">Adoptions</Nav.Link>
-            <Nav.Link href="/intake">Community Support</Nav.Link>
+            <Nav.Link href="/intake">Community Resources</Nav.Link>
             <Nav.Link href="/donate">Donate</Nav.Link>
+            <Nav.Link href="/donate">Events</Nav.Link>
+            <Nav.Link href="/donate">Blog</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

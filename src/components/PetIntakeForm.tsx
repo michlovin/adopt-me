@@ -13,6 +13,7 @@ export function PetIntakeForm() {
   const [intakeValues, setintakeValues] = useState<IntakeForm>({
     firstName: "",
     lastName: "",
+    date: "",
     surrenderReason: "",
     petName: "",
     age: "",
@@ -93,6 +94,17 @@ export function PetIntakeForm() {
                   type="text"
                   name="lastName"
                   value={intakeValues.lastName}
+                  onChange={handleChange}
+                  required
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="date">
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="date"
+                  value={intakeValues.date}
                   onChange={handleChange}
                   required
                 ></Form.Control>

@@ -5,6 +5,7 @@ import { getPets } from "../services/petService";
 import { PetCard } from "./PetCard";
 import "./css/petlist.css";
 import { Link } from "react-router-dom";
+import { HorizontialCard } from "./HorizontalCard";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -19,15 +20,17 @@ export function PetList() {
   console.log(pets);
 
   return (
-    <div className="PetList">
+    <div className="petlist">
       <Link to={`/intake`} className="btn btn-primary">
         {" "}
         surrender
       </Link>
+      <HorizontialCard />
       <Row>
         {pets.map((pet) => (
           <Col lg={4} className="grid-gap">
             <PetCard pet={pet} />
+            <br />
           </Col>
         ))}
         <Col lg={4}></Col>

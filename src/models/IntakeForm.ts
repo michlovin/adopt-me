@@ -1,6 +1,7 @@
 export interface IntakeForm {
   firstName: string;
   lastName: string;
+  date: string;
   surrenderReason: string;
   petName: string;
   age: string;

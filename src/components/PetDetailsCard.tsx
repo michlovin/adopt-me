@@ -36,9 +36,9 @@ export default function PetDetails() {
                 <Card.Text>{pet.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <button className="btn btn-primary">Book A Viewing</button>
+                <button className="btn btn-success">Book A Viewing</button>
 
-                <Link to={`/adoptions/${pet.id}`} className="btn btn-primary">
+                <Link to={`/adoptions/${pet.id}`} className="btn btn-success">
                   {" "}
                   Adoption forms for {pet.name}
                 </Link>
