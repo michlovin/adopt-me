@@ -1,7 +1,25 @@
+import { Row, Col } from "react-bootstrap";
+
 export function Footer() {
   return (
-    <div className="Footer">
-      <p>FOOTER HERE </p>
-    </div>
+    <Row>
+      <div className="footer-container">
+        <Col>
+          <p>FOOTER HERE </p>
+        </Col>
+        <Col>
+          <p>FOOTER HERE </p>
+        </Col>
+        <Col>
+          <p>FOOTER HERE </p>
+        </Col>
+        <Col>
+          <p>FOOTER HERE </p>
+        </Col>
+        <Col>
+          <p>FOOTER HERE </p>
+        </Col>
+      </div>
+    </Row>
   );
 }
