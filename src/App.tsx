@@ -23,6 +23,10 @@ function App() {
             element={<PetDetails></PetDetails>}
           ></Route>
           <Route path="/adoptions/:id" element={<PetadoptionForm />}></Route>
+          <Route path="/petcare" element={<PetList></PetList>}></Route>
+          <Route path="/resources" element={<PetList></PetList>}></Route>
+          <Route path="/events" element={<PetIntakeForm />}></Route>
+          <Route path="/donate" element={<PetIntakeForm />}></Route>
           <Route path="/intake" element={<PetIntakeForm />}></Route>
         </Routes>
       </Router>

@@ -1,0 +1,36 @@
+.text-card-wrapper {
+  padding: 2rem;
+  background-color: #009688;
+  border-radius: 6px;
+}
+
+.text-field {
+  text-align: left;
+}
+
+.subtext {
+  padding-bottom: 0.25rem;
+  font-size: 22px;
+}
+
+.title {
+  padding-bottom: 0.25rem;
+  font-size: 26px;
+}
+
+.content {
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+img {
+  border-radius: 5px;
+}
+
+.btn {
+  margin: 0 1rem 0 0.5rem;
+}
+
+.button-container {
+  padding-top: 20px;
+}

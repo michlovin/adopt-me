@@ -6,6 +6,8 @@ import { PetCard } from "./PetCard";
 import "./css/petlist.css";
 import { Link } from "react-router-dom";
 import { HorizontialCard } from "./HorizontalCard";
+import { TextCard } from "./TextCard";
+import { FullWidthImageBanner } from "./FullWidthImageBanner";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -20,21 +22,25 @@ export function PetList() {
   console.log(pets);
 
   return (
-    <div className="petlist">
-      <Link to={`/intake`} className="btn btn-primary">
-        {" "}
-        surrender
-      </Link>
-      <HorizontialCard />
-      <Row>
-        {pets.map((pet) => (
-          <Col lg={4} className="grid-gap">
-            <PetCard pet={pet} />
-            <br />
-          </Col>
-        ))}
-        <Col lg={4}></Col>
-      </Row>
-    </div>
+    <>
+      <TextCard />
+      <div className="petlist">
+        <Link to={`/intake`} className="btn btn-primary">
+          {" "}
+          surrender
+        </Link>
+        <HorizontialCard />
+        <Row>
+          {pets.map((pet) => (
+            <Col lg={4} className="grid-gap">
+              <PetCard pet={pet} />
+              <br />
+            </Col>
+          ))}
+          <Col lg={4}></Col>
+        </Row>
+      </div>
+      <FullWidthImageBanner />
+    </>
   );
 }
