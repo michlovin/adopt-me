@@ -31,7 +31,7 @@ export default function PetDetails() {
             <Card>
               <Card.Img
                 className="img-fluid rounded-start"
-                src={`img/${pet.image}`}
+                src={`/img/${pet.image}`}
               ></Card.Img>
               <Card.Body>
                 <Card.Title>{pet.name}</Card.Title>
