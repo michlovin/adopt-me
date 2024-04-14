@@ -9,12 +9,7 @@ export function Header() {
       <Navbar bg="white" expand="lg" data-bs-theme="light">
         <Container fluid>
           <Navbar.Brand href="/">
-            <img
-              src="{`/./assets/logo.jpg`}"
-              alt=""
-              width="80"
-              height={80}
-            ></img>
+            <img src={logo} alt="" width="80" height={80}></img>
             <h1 className="text-left text-black">Adopt Me</h1>
           </Navbar.Brand>
           <Nav className="mx-auto">
