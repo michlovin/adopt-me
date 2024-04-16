@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { HorizontialCard } from "./HorizontalCard";
 import { TextCard } from "./TextCard";
 import { FullWidthImageBanner } from "./FullWidthImageBanner";
+import { Wave } from "./Wave";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
