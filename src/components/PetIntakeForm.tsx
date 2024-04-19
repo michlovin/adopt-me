@@ -5,6 +5,7 @@ import { Pet } from "../models/Pet";
 import { IntakeForm } from "../models/IntakeForm";
 import { getPetById } from "../services/petService";
 import { postIntake } from "../services/intakeService";
+import { TextCard } from "./TextCard";
 
 export function PetIntakeForm() {
   // eslint-disable-next-line no-unused-vars
@@ -65,199 +66,202 @@ export function PetIntakeForm() {
   }
 
   return (
-    <div>
-      <div>Fill out the surrender form for this animal</div>
-      <Row>
-        <Col lg={3}></Col>
-        <Col lg={4}>
-          {formSubmitted ? (
-            <Alert>
-              One of our team members will get back with you as soon as
-              possible, thanks!
-            </Alert>
-          ) : (
-            <Form onSubmit={onSubmit}>
-              <Form.Group controlId="firstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstName"
-                  value={intakeValues.firstName}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
+    <>
+      <TextCard />
+      <div>
+        <div>Fill out the surrender form for this animal</div>
+        <Row>
+          <Col lg={3}></Col>
+          <Col lg={4}>
+            {formSubmitted ? (
+              <Alert>
+                One of our team members will get back with you as soon as
+                possible, thanks!
+              </Alert>
+            ) : (
+              <Form onSubmit={onSubmit}>
+                <Form.Group controlId="firstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="firstName"
+                    value={intakeValues.firstName}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="lastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastName"
-                  value={intakeValues.lastName}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="lastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="lastName"
+                    value={intakeValues.lastName}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="date">
-                <Form.Label>Date</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="date"
-                  value={intakeValues.date}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="date">
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="date"
+                    value={intakeValues.date}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="surrenderReason">
-                <Form.Label>Reason for Surrender</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="surrenderReason"
-                  value={intakeValues.surrenderReason}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="surrenderReason">
+                  <Form.Label>Reason for Surrender</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="surrenderReason"
+                    value={intakeValues.surrenderReason}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="petName">
-                <Form.Label>Animal Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="petName"
-                  value={intakeValues.petName}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="petName">
+                  <Form.Label>Animal Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="petName"
+                    value={intakeValues.petName}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="age">
-                <Form.Label>Animal's Age</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="age"
-                  value={intakeValues.age}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="age">
+                  <Form.Label>Animal's Age</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="age"
+                    value={intakeValues.age}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="species">
-                <Form.Label>Species cat,dog,rabbit,bird ect</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="species"
-                  value={intakeValues.species}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="species">
+                  <Form.Label>Species cat,dog,rabbit,bird ect</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="species"
+                    value={intakeValues.species}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="breed">
-                <Form.Label>Breed</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="breed"
-                  value={intakeValues.breed}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId="breed">
+                  <Form.Label>Breed</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="breed"
+                    value={intakeValues.breed}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Check
-                type="checkbox"
-                id="hasKids"
-                label="Was you animal raised around children?"
-                name="hasKids"
-                checked={intakeValues.hasKids}
-                onChange={handleChange}
-              />
-
-              <Form.Check
-                type="checkbox"
-                id="hasOtherPets"
-                label="Has your animal been raised with other animals if yes list in next question?"
-                name="hasOtherPets"
-                checked={intakeValues.hasOtherPets}
-                onChange={handleChange}
-              />
-
-              <Form.Group controlId="otherPets">
-                <Form.Label>What types of pets in household</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="otherPets"
-                  value={intakeValues.otherPets}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
-
-              <Form.Check
-                type="checkbox"
-                id="isFixed"
-                label="is your pet spayed or neutered?"
-                name="isFixed"
-                checked={intakeValues.isFixed}
-                onChange={handleChange}
-              />
-
-              <Form.Check
-                type="checkbox"
-                id="gender"
-                label="is your animal male or female?"
-                name="gender"
-                checked={intakeValues.gender}
-                onChange={handleChange}
-              />
-
-              <Form.Group controlId="vet">
-                <Form.Label>What is the name of vet</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="vet"
-                  value={intakeValues.vet}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
-
-              <Form.Group controlId="vaccinations">
-                <Form.Label>vaccinations?</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="vaccinations"
-                  value={intakeValues.vaccinations}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
-
-              <Form.Group controlId="healthConcerns">
-                <Form.Label>healthConcerns</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  name="healthConcerns"
-                  value={intakeValues.healthConcerns}
+                <Form.Check
+                  type="checkbox"
+                  id="hasKids"
+                  label="Was you animal raised around children?"
+                  name="hasKids"
+                  checked={intakeValues.hasKids}
                   onChange={handleChange}
                 />
-              </Form.Group>
 
-              <Form.Group controlId="otherDescriptions">
-                <Form.Label>otherDescriptions</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  name="otherDescriptions"
-                  value={intakeValues.otherDescriptions}
+                <Form.Check
+                  type="checkbox"
+                  id="hasOtherPets"
+                  label="Has your animal been raised with other animals if yes list in next question?"
+                  name="hasOtherPets"
+                  checked={intakeValues.hasOtherPets}
                   onChange={handleChange}
                 />
-              </Form.Group>
 
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          )}
-        </Col>
-        <Col lg={3}></Col>
-      </Row>
-    </div>
+                <Form.Group controlId="otherPets">
+                  <Form.Label>What types of pets in household</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="otherPets"
+                    value={intakeValues.otherPets}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
+
+                <Form.Check
+                  type="checkbox"
+                  id="isFixed"
+                  label="is your pet spayed or neutered?"
+                  name="isFixed"
+                  checked={intakeValues.isFixed}
+                  onChange={handleChange}
+                />
+
+                <Form.Check
+                  type="checkbox"
+                  id="gender"
+                  label="is your animal male or female?"
+                  name="gender"
+                  checked={intakeValues.gender}
+                  onChange={handleChange}
+                />
+
+                <Form.Group controlId="vet">
+                  <Form.Label>What is the name of vet</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="vet"
+                    value={intakeValues.vet}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="vaccinations">
+                  <Form.Label>vaccinations?</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="vaccinations"
+                    value={intakeValues.vaccinations}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="healthConcerns">
+                  <Form.Label>healthConcerns</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="healthConcerns"
+                    value={intakeValues.healthConcerns}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="otherDescriptions">
+                  <Form.Label>otherDescriptions</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="otherDescriptions"
+                    value={intakeValues.otherDescriptions}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+            )}
+          </Col>
+          <Col lg={3}></Col>
+        </Row>
+      </div>
+    </>
   );
 }

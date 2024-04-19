@@ -24,12 +24,7 @@ export function PetList() {
 
   return (
     <>
-      <TextCard />
       <div className="petlist">
-        <Link to={`/intake`} className="btn btn-primary">
-          {" "}
-          surrender
-        </Link>
         <HorizontialCard />
         <Row>
           {pets.map((pet) => (
@@ -42,6 +37,7 @@ export function PetList() {
         </Row>
       </div>
       <FullWidthImageBanner />
+      <TextCard />
     </>
   );
 }
