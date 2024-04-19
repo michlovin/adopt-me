@@ -1,10 +1,11 @@
-import { Card } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import "./css/petcard.css";
 import { BsSuitHeart } from "react-icons/bs";
 import { BsPlusCircle } from "react-icons/bs";
 import { BsCalendar3 } from "react-icons/bs";
+import React from "react";
 
 //using props to bring in information
 
@@ -14,6 +15,7 @@ interface PetCardProps {
 }
 
 export function PetCard(props: PetCardProps) {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <Card className="space-below">
       <Card.Img
@@ -40,6 +42,13 @@ export function PetCard(props: PetCardProps) {
           {props.pet.name}'s Details
         </Link>
         <BsSuitHeart />
+        <>
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+            Launch vertically centered modal
+          </Button>
+
+          <Modal show={modalShow} onHide={() => setModalShow(false)} />
+        </>
       </Card.Footer>
     </Card>
   );

@@ -9,6 +9,7 @@ import { HorizontialCard } from "./HorizontalCard";
 import { TextCard } from "./TextCard";
 import { FullWidthImageBanner } from "./FullWidthImageBanner";
 import { Wave } from "./Wave";
+import { Calender } from "./Calender";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -25,6 +26,7 @@ export function PetList() {
   return (
     <>
       <div className="petlist">
+        <Calender />
         <HorizontialCard />
         <Row>
           {pets.map((pet) => (
