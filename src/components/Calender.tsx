@@ -9,6 +9,10 @@ export function Calender() {
       <Datepicker
         selected={selectedDate}
         onChange={(date: Date | null) => setDate(date)}
+        dateFormat="dd/MMM/yyyy hh:mm"
+        showTimeSelect
+        timeIntervals={30}
+        timeFormat="hh:mm"
       />
     </>
   );

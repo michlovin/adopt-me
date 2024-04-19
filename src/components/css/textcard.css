@@ -8,13 +8,13 @@
 }
 
 .anim-wrapper {
-  height: 50vh;
-  animation: 5s linear 0s 1 alternate sun-rise;
+  height: 20%;
+  animation: 2s linear 0s 1 alternate sun-rise;
 }
 
 @keyframes sun-rise {
   from {
-    transform: translateY(110vh);
+    transform: translateY(15%);
   }
   to {
     transform: translateY(0);

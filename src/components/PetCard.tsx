@@ -6,6 +6,7 @@ import { BsSuitHeart } from "react-icons/bs";
 import { BsPlusCircle } from "react-icons/bs";
 import { BsCalendar3 } from "react-icons/bs";
 import React from "react";
+import { CalenderModal } from "./CalenderModal";
 
 //using props to bring in information
 
@@ -16,6 +17,7 @@ interface PetCardProps {
 
 export function PetCard(props: PetCardProps) {
   const [modalShow, setModalShow] = React.useState(false);
+
   return (
     <Card className="space-below">
       <Card.Img
@@ -33,22 +35,13 @@ export function PetCard(props: PetCardProps) {
         {props.pet.description}
       </Card.Body>
       <Card.Footer className="space-below">
-        <button className="btn btn-success">
-          <BsCalendar3 className="svg" />
-          Book A Viewing
-        </button>
+        <CalenderModal />
         <Link to={`/details/${props.pet.id}`} className="btn btn-success ml-2">
           <BsPlusCircle className="svg" />
           {props.pet.name}'s Details
         </Link>
         <BsSuitHeart />
-        <>
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-            Launch vertically centered modal
-          </Button>
-
-          <Modal show={modalShow} onHide={() => setModalShow(false)} />
-        </>
+        <></>
       </Card.Footer>
     </Card>
   );
