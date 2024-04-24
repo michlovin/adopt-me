@@ -21,9 +21,8 @@ const firebaseConfig = {
 // const snapshot = await getDocs(todosCol);
 
 const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line
 const db = getFirestore(app);
-
+console.log(db);
 export async function getAllData(db) {
   const petsCollection = collection(db, "pets");
   const petSnapshot = await getDocs(petsCollection);

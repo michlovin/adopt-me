@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import PetDetails from "./components/PetDetailsCard";
@@ -9,7 +9,6 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { PetadoptionForm } from "./components/PetAdoptionForm";
 import { PetIntakeForm } from "./components/PetIntakeForm";
 import { Pagination } from "react-bootstrap";
-
 //todo pass props correctly from details card
 function App() {
   return (
@@ -38,6 +37,3 @@ function App() {
 }
 
 export default App;
-function handleSubmit(value: any) {
-  throw new Error("Function not implemented.");
-}
