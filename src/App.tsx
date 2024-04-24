@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import PetDetails from "./components/PetDetailsCard";
@@ -9,6 +9,7 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { PetadoptionForm } from "./components/PetAdoptionForm";
 import { PetIntakeForm } from "./components/PetIntakeForm";
 import { Pagination } from "react-bootstrap";
+import firebasehandlesubmit from "./FireBase/firebasehandlesubmit";
 
 //todo pass props correctly from details card
 function App() {
@@ -38,3 +39,6 @@ function App() {
 }
 
 export default App;
+function handleSubmit(value: any) {
+  throw new Error("Function not implemented.");
+}
