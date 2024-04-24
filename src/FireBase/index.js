@@ -15,7 +15,17 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(firebaseApp);
+// const todosCol = collection(db, "todos");
+// const snapshot = await getDocs(todosCol);
+
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
-const todosCol = collection(db, "todos");
-const snapshot = await getDocs(todosCol);
+const db = getFirestore(app);
+
+async function getAllData(db) {
+  const petsCol = collection(db, "pets");
+  const snapshot = await getDocs(petsCol);
+  const petList = citySnapshot.docs.map((docs) => docs.data());
+  return petList;
+}
