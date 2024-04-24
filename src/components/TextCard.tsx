@@ -4,6 +4,7 @@ export function TextCard() {
   return (
     <div className="text-card-wrapper">
       <div className="anim-wrapper">
+        <div className="eyebrow">eyebrow</div>
         <div className="title">Title</div>
         <div className="subtext">Subtitle</div>
         <div className="text-field">

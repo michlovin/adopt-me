@@ -22,13 +22,17 @@
 }
 
 .title {
-  padding-bottom: 0.25rem;
+  padding-bottom: 2rem;
   font-size: 26px;
 }
 
 .text-field {
   text-align: left;
   padding-top: 2rem;
+}
+
+.eyebrow {
+  padding: 2rem;
 }
 
 .subtext {
