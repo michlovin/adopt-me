@@ -12,7 +12,7 @@ import handleSubmit from "../FireBase/firebasehandlesubmit";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
-  const dataRef = useRef();
+  const dataRef = useRef<HTMLInputElement>(null);
   //parent of pet card
   //taking data from parent to child is props
   //UseEffect what do you want to do and when do you want to run it
@@ -23,10 +23,12 @@ export function PetList() {
   }, []);
   console.log(pets);
 
-  const submithandler = (e) => {
+  const submithandler = (e: any) => {
     e.preventDefault();
-    handleSubmit(dataRef.current.value);
-    dataRef.current.value = "";
+    if (dataRef.current?.value) {
+      handleSubmit(dataRef?.current?.value);
+      dataRef.current.value = "";
+    }
   };
 
   return (
