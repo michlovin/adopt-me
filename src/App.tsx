@@ -9,7 +9,6 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { PetadoptionForm } from "./components/PetAdoptionForm";
 import { PetIntakeForm } from "./components/PetIntakeForm";
 import { Pagination } from "react-bootstrap";
-import firebasehandlesubmit from "./FireBase/firebasehandlesubmit";
 
 //todo pass props correctly from details card
 function App() {

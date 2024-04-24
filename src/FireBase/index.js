@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, getDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,11 +21,12 @@ const firebaseConfig = {
 // const snapshot = await getDocs(todosCol);
 
 const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line
 const db = getFirestore(app);
 
-async function getAllData(db) {
-  const petsCol = collection(db, "pets");
-  const snapshot = await getDocs(petsCol);
-  const petList = citySnapshot.docs.map((docs) => docs.data());
-  return petList;
+export async function getAllData(db) {
+  const petsCollection = collection(db, "pets");
+  const petSnapshot = await getDocs(petsCollection);
+  const dbpetList = petSnapshot.docs.map((docs) => docs.data());
+  return dbpetList;
 }
