@@ -4,11 +4,10 @@ import { Pet } from "../models/Pet";
 import { getPets } from "../services/petService";
 import { PetCard } from "./PetCard";
 import "./css/petlist.css";
-import { Link } from "react-router-dom";
 import { HorizontialCard } from "./HorizontalCard";
 import { TextCard } from "./TextCard";
 import { FullWidthImageBanner } from "./FullWidthImageBanner";
-import { Search } from "./search";
+import { PetSearch } from "./PetSearch";
 
 export function PetList() {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -25,7 +24,7 @@ export function PetList() {
   return (
     <>
       <div className="petlist">
-        <Search />
+        <PetSearch />
         <HorizontialCard />
         <Row>
           {pets.map((pet) => (
