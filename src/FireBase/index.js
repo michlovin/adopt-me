@@ -1,6 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  CollectionReference,
+} from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,18 +22,78 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(firebaseApp);
-// const todosCol = collection(db, "todos");
-// const snapshot = await getDocs(todosCol);
+const startFirebase = initializeApp(firebaseConfig);
+//init services
+const database = getFirestore(startFirebase);
+//collection references for pets
+const petsCollection = collection(database, "Adoptees");
+//get collection data
+// const petsDocuments = await getDocs(petsCollection);
+getDocs(petsCollection)
+  .then((snapshot) => {
+    let pets = [];
+    snapshot.docs.forEach((docs) => {
+      pets.push({ id: docs.id, name: docs.data() });
+    });
+    console.log(pets, "pets");
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-console.log(db);
-export async function getAllData(db) {
-  const petsCollection = collection(db, "Adoptees");
+//FETCHING PET PARENT (CLIENT) DATA
+const clientCollection = collection(database, "Pet-Parents");
+getDocs(clientCollection)
+  .then((snapshot) => {
+    let clients = [];
+    snapshot.docs.forEach((docs) => {
+      clients.push({
+        id: docs.id,
+        petParent: docs.data(),
+      });
+    });
+    console.log(clients, "PAREEEENNNNTTSSSS");
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+//FETCHING ADMIN DATA
+const adminCollection = collection(database, "Admin");
+getDocs(adminCollection)
+  .then((snapshot) => {
+    let admin = [];
+    snapshot.docs.forEach((docs) => {
+      admin.push({
+        id: docs.id,
+        admin: docs.data(),
+      });
+    });
+    console.log(admin, "DA BOSSSSSSSSSS");
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+//FETCHING PETS FROM DB
+export async function getAllData(database) {
+  const petsCollection = collection(database, "Adoptees");
   const petSnapshot = await getDocs(petsCollection);
   const dbpetList = petSnapshot.docs.map((docs) => docs.data());
-  console.log(dbpetList);
+  console.log(dbpetList, "dbpetList HERE");
   return dbpetList;
 }
+
+//ADDING ADOPTION DOCUMENTS
+// const addAdoptionForm = document.querySelector(".add");
+// addAdoptionForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+
+//   // addDoc(CollectionReference)
+// });
+
+// //DELETING ADOPTION DOCS
+// const deleteAdoptionForm = document.querySelector(".delete");
+// deleteAdoptionForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+// });
