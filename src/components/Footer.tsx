@@ -3,7 +3,7 @@ import "./css/footer.css";
 
 export function Footer() {
   return (
-    <Row lg={1}>
+    <Row md={1}>
       <div className="footer-container">
         <Col>{/* <Image> </Image> */}</Col>
         <Col>

@@ -1,4 +1,8 @@
 .footer-container {
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
+  background-color: #009688;
+  border-radius: 25px;
+  margin: 25px;
+  width: 80vh;
 }

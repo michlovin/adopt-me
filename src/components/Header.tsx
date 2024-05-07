@@ -1,12 +1,11 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import "../components/css/header.css";
 import logo from "./assets/logo.jpg";
 
 export function Header() {
   return (
     <div className="Header">
-      <Navbar bg="white" expand="lg" data-bs-theme="light">
+      <Navbar expand="lg" data-bs-theme="light">
         <Container fluid>
           <Navbar.Brand href="/">
             <img src={logo} alt="" width="80" height={80}></img>

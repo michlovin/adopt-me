@@ -3,6 +3,8 @@ h1 {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.Navbar .bg {
-  color: red;
+.Header {
+  background-color: #009688;
+  border-radius: 25px;
+  margin: 25px;
 }

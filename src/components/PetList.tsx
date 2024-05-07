@@ -40,15 +40,16 @@ export function PetList() {
       <div className="petlist">
         <PetSearch />
         <HorizontialCard />
-        <Row>
-          {pets.map((pet) => (
-            <Col lg={4} className="grid-gap">
-              <PetCard pet={pet} />
-              <br />
-            </Col>
-          ))}
-          <Col lg={4}></Col>
-        </Row>
+        <div className="grid-spacing">
+          <Row>
+            {pets.map((pet) => (
+              <Col lg={4}>
+                <PetCard pet={pet} />
+                <br />
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
       <FullWidthImageBanner />
       <TextCard />
