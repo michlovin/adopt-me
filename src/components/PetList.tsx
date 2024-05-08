@@ -20,7 +20,7 @@ import { database } from "../FireBase/FirebaseProvider";
 
 export function PetList() {
   const dataRef = useRef<HTMLInputElement>(null);
-  const [pets, setPets] = useState<Pet[]>([]); //this is wrong
+  const [pets, setPets] = useState<Pet[]>([]); //yay this is not wrong
   const petsCollection = collection(database, "Adoptees");
   //parent of pet card
   //taking data from parent to child is props
@@ -35,17 +35,20 @@ export function PetList() {
     }
   };
 
+  //fix this use effect do we really need unsubscribe here not sure it is being used
+  //typecasting was used to forece the type here because when data is fetch from the db you do not know what is coming so forcing type will fix this
   useEffect(() => {
     let queryRef = query(petsCollection, orderBy("name"));
     const unsubscribe = onSnapshot(queryRef, (querySnap) => {
       if (querySnap.empty) {
         console.log("No docs found");
       } else {
-        let petsData = querySnap.docs.map((doc) => {
-          return { ...doc.data() };
+        let petsData: Pet[] = querySnap.docs.map((doc) => {
+          // let pet: Pet = ...doc.data();
+          return { ...doc.data() } as Pet;
         });
-        setPets(petsData);
         console.log(petsData, "PET DATA");
+        setPets(petsData);
       }
     });
     return unsubscribe;
@@ -76,6 +79,6 @@ export function PetList() {
     </>
   );
 }
-function setHeroes(heroesData: { DOC_ID: string }[]) {
+function setPets(PetsData: { DOC_ID: string }[]) {
   throw new Error("Function not implemented.");
 }
