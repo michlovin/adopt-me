@@ -31,12 +31,10 @@ const startFirebase = initializeApp(firebaseConfig);
 export const auth = getAuth(startFirebase);
 export const database = getFirestore(startFirebase);
 export const storage = getStorage(startFirebase);
-//collection references for pets
-const petsCollection = collection(database, "Adoptees");
 
 export const FirebaseProvider = (props) => {
   const children = props.children;
-  const theValues = { database, auth, storage, petsCollection };
+  const theValues = { database, auth, storage };
 
   return (
     <FirebaseContext.Provider value={theValues}>
@@ -48,20 +46,6 @@ export const FirebaseProvider = (props) => {
 export function useFirebase() {
   return useContext(FirebaseContext);
 }
-
-//get collection data
-// const petsDocuments = await getDocs(petsCollection);
-getDocs(petsCollection)
-  .then((snapshot) => {
-    let pets = [];
-    snapshot.docs.forEach((docs) => {
-      pets.push({ id: docs.id, name: docs.data() });
-    });
-    console.log(pets, "pets");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
 
 //FETCHING PET PARENT (CLIENT) DATA
 const clientCollection = collection(database, "Pet-Parents");

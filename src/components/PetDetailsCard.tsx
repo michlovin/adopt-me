@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { getPetById } from "../services/petService";
+
 import { Pet } from "../models/Pet";
 import { BsCalendar3 } from "react-icons/bs";
 import "./css/petdetailscard.css";
@@ -12,14 +12,6 @@ import { BsFileText } from "react-icons/bs";
 export default function PetDetails() {
   const { id } = useParams();
   const [pet, setPet] = useState<Pet | null>(null);
-
-  useEffect(() => {
-    if (id !== undefined) {
-      getPetById(Number(id)).then((pet) => {
-        setPet(pet);
-      });
-    }
-  }, [id]);
 
   //to do:style this card better
   return (

@@ -3,13 +3,13 @@ import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { IntakeForm } from "../models/IntakeForm";
-import { getPetById } from "../services/petService";
+
 import { postIntake } from "../services/intakeService";
 import { TextCard } from "./TextCard";
 
 export function PetIntakeForm() {
   // eslint-disable-next-line no-unused-vars
-  const [pet, setPet] = useState<Pet | null>(null);
+
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [intakeValues, setintakeValues] = useState<IntakeForm>({
     firstName: "",
@@ -30,16 +30,6 @@ export function PetIntakeForm() {
     healthConcerns: "",
     otherDescriptions: "",
   });
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    if (id !== undefined) {
-      getPetById(Number(id)).then((pet) => {
-        setPet(pet);
-      });
-    }
-  }, [id]);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

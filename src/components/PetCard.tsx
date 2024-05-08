@@ -5,8 +5,10 @@ import "./css/petcard.css";
 import { BsSuitHeart } from "react-icons/bs";
 import { BsPlusCircle } from "react-icons/bs";
 import { BsCalendar3 } from "react-icons/bs";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CalenderModal } from "./CalenderModal";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../FireBase/FirebaseProvider";
 
 //using props to bring in information
 
@@ -17,6 +19,23 @@ interface PetCardProps {
 
 export function PetCard(props: PetCardProps) {
   const [modalShow, setModalShow] = React.useState(false);
+
+  //get collection data for pets
+
+  // useEffect(() => {
+  //   getDocs(petsCollection)
+  //     .then((snapshot) => {
+  //       let Petpoop: { id: string; name: DocumentData }[] = [];
+  //       snapshot.docs.forEach((docs) => {
+  //         Petpoop.push({ id: docs.id, name: docs.data() });
+  //       });
+  //       console.log(pets, "pets");
+  //       setPets(Petpoop);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // }, []);
 
   return (
     <Card className="space-below">

@@ -2,29 +2,17 @@ import { useEffect, useState } from "react";
 import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { AdminForm } from "../models/AdminForm";
-import { getPetById } from "../services/petService";
 import { postAdopteeAdminService } from "../services/adopteeadminService";
-import {
-  collection,
-  addDoc,
-  updateDoc,
-  arrayUnion,
-  doc,
-  getDocs,
-  DocumentData,
-  Firestore,
-} from "firebase/firestore";
-import { database, useFirebase } from "../FireBase/FirebaseProvider";
 import { Pet } from "../models/Pet";
+import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { database } from "../FireBase/FirebaseProvider";
 
-//   import { useFirebase } from "../FirebaseProvider";
-// import { useUserAuth } from "../context/UserAuthContext";
-
-export function PetadoptionForm() {
+export function AdminPetForm() {
   // eslint-disable-next-line no-unused-vars
-  const [pet, setPet] = useState<Pet | null>(null);
+  const [pets, setPets] = useState<Pet[]>([]);
   const { id } = useParams();
-  //   const petsCollection = collection(database, "Adoptees");
+  //collection references for pets
+  const petsCollection = collection(database, "Adoptees");
 
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<AdminForm>({
@@ -40,74 +28,6 @@ export function PetadoptionForm() {
     lifeStage: "",
     intakeDate: "",
   });
-
-  //get collection data
-  // const petsDocuments = await getDocs(petsCollection);
-  //   getDocs(petsCollection)
-  //     .then((snapshot) => {
-  //       let pets: { id: string; name: DocumentData }[] = []; //check this one out
-  //       snapshot.docs.forEach((docs) => {
-  //         pets.push({ id: docs.id, name: docs.data() });
-  //       });
-  //       console.log(pets, "pets");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-
-  //   //FETCHING PETS FROM DB
-  //   async function getAllData(database: Firestore) {
-  //     const petsCollection = collection(database, "Adoptees");
-  //     const petSnapshot = await getDocs(petsCollection);
-  //     const dbpetList = petSnapshot.docs.map((docs) => docs.data());
-  //     console.log(dbpetList, "dbpetList HERE");
-  //     return dbpetList;
-  //   }
-
-  //   //ADDING ADOPTION DOCUMENTS
-  //   const addPetToAdoptionForm = document.querySelector(".add");
-  //   addPetToAdoptionForm!.addEventListener("submit", (e) => {
-  //     e.preventDefault();
-
-  //     addDoc(petsCollection, {
-  //       name: addPetToAdoptionForm?.name.value,
-  //       description: addPetToAdoptionForm!.description.value,
-  //     }).then(() => {
-  //       addPetToAdoptionForm.reset;
-  //     });
-  //   });
-
-  //   const addResto = async () => {
-  //     try {
-  //       let collectionRef = collection(db, "restaurants");
-  //       await addDoc(collectionRef, {
-  //         name: resto,
-  //         type: type,
-  //         contact: {
-  //           address: address1,
-  //           address2: address2,
-  //           city: city,
-  //           province: province,
-  //           postal: postal,
-  //           owner: { firstName: firstName, lastName: lastName },
-  //           email: email,
-  //           phoneNumber: phone,
-  //         },
-  //         ownerUid: user.uid,
-  //       });
-  //       console.log("Create business success!");
-  //     } catch (ex) {
-  //       console.log("FIRESTORE ADD FAILURE!", ex.message);
-  //     }
-  //   };
-
-  useEffect(() => {
-    if (id !== undefined) {
-      getPetById(Number(id)).then((pet) => {
-        return setPet(pet);
-      });
-    }
-  }, [id]);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,7 +47,7 @@ export function PetadoptionForm() {
     }
   };
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: any) {
     e.preventDefault();
     postAdopteeAdminService(formValues);
     setFormSubmitted(true);
@@ -269,7 +189,7 @@ export function PetadoptionForm() {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button onClick={onSubmit} variant="primary" type="submit">
                 Submit
               </Button>
             </Form>

@@ -3,7 +3,6 @@ import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { AdoptionForm } from "../models/AdoptionForm";
-import { getPetById } from "../services/petService";
 import { postAdoption } from "../services/adoptionService";
 
 export function PetadoptionForm() {
@@ -20,16 +19,6 @@ export function PetadoptionForm() {
     hasOtherPets: false,
     moreDescription: "",
   });
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    if (id !== undefined) {
-      getPetById(Number(id)).then((pet) => {
-        setPet(pet);
-      });
-    }
-  }, [id]);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

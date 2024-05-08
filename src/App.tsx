@@ -6,8 +6,8 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { PetList } from "./components/PetList";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { PetadoptionForm } from "./components/PetAdoptionForm";
 import { PetIntakeForm } from "./components/PetIntakeForm";
+import { AdminPetForm } from "./components/AdminPetForm";
 //todo pass props correctly from details card
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             element={<PetDetails></PetDetails>}
           ></Route>
           <Route path="/resources" element={<PetIntakeForm />}></Route>
-          {/* <Route path="/adminintake" element={<AdminForm />}></Route> */}
+          <Route path="/adminintake" element={<AdminPetForm />}></Route>
           {/* <Route path="/events" element={<EventsPage />}></Route> */}
           {/* <Route path="/donate" element={<DonatePage/>}></Route> */}
         </Routes>

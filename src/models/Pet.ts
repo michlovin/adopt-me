@@ -8,4 +8,5 @@ export interface Pet {
   breed: string;
   isBoy: boolean;
   isAdopted: boolean;
+  DOC_ID: string;
 }
