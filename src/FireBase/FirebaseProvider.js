@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import React, { useContext } from "react";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -7,10 +8,13 @@ import {
   addDoc,
   CollectionReference,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+export const FirebaseContext = React.createContext({});
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC-Jx4f3D5zsYC1X_DNBa161jXOUQnqzBk",
@@ -24,9 +28,27 @@ const firebaseConfig = {
 // Initialize Firebase
 const startFirebase = initializeApp(firebaseConfig);
 //init services
-const database = getFirestore(startFirebase);
+export const auth = getAuth(startFirebase);
+export const database = getFirestore(startFirebase);
+export const storage = getStorage(startFirebase);
 //collection references for pets
 const petsCollection = collection(database, "Adoptees");
+
+export const FirebaseProvider = (props) => {
+  const children = props.children;
+  const theValues = { database, auth, storage, petsCollection };
+
+  return (
+    <FirebaseContext.Provider value={theValues}>
+      {children}
+    </FirebaseContext.Provider>
+  );
+};
+
+export function useFirebase() {
+  return useContext(FirebaseContext);
+}
+
 //get collection data
 // const petsDocuments = await getDocs(petsCollection);
 getDocs(petsCollection)
@@ -84,12 +106,17 @@ export async function getAllData(database) {
   return dbpetList;
 }
 
-//ADDING ADOPTION DOCUMENTS
-// const addAdoptionForm = document.querySelector(".add");
-// addAdoptionForm.addEventListener("submit", (e) => {
+// //ADDING ADOPTION DOCUMENTS
+// const addPetToAdoptionForm = document.querySelector(".add");
+// addPetToAdoptionForm.addEventListener("submit", (e) => {
 //   e.preventDefault();
 
-//   // addDoc(CollectionReference)
+//   addDoc(petsCollection, {
+//     name: addPetToAdoptionForm.name.value,
+//     description: addPetToAdoptionForm.description.value,
+//   }).then(() => {
+//     addPetToAdoptionForm.reset;
+//   });
 // });
 
 // //DELETING ADOPTION DOCS

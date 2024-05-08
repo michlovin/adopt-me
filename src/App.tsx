@@ -20,10 +20,10 @@ function App() {
             path="/details/:id"
             element={<PetDetails></PetDetails>}
           ></Route>
-          <Route path="/adoptions/:id" element={<PetadoptionForm />}></Route>
           <Route path="/resources" element={<PetIntakeForm />}></Route>
-          <Route path="/events" element={<PetIntakeForm />}></Route>
-          <Route path="/donate" element={<PetIntakeForm />}></Route>
+          {/* <Route path="/adminintake" element={<AdminForm />}></Route> */}
+          {/* <Route path="/events" element={<EventsPage />}></Route> */}
+          {/* <Route path="/donate" element={<DonatePage/>}></Route> */}
         </Routes>
       </Router>
       <Footer />

@@ -13,10 +13,10 @@ export function Header() {
           </Navbar.Brand>
           <Nav className="mx-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/Adoptions">Adoptions</Nav.Link>
-            <Nav.Link href="/intake">Community Resources</Nav.Link>
+            <Nav.Link href="/resources">Community Resources</Nav.Link>
             <Nav.Link href="/donate">Donate</Nav.Link>
             <Nav.Link href="/donate">Events</Nav.Link>
+            <Nav.Link href="/adminintake">Admin Intake</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
