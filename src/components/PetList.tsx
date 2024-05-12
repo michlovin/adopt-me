@@ -17,6 +17,7 @@ import {
   query,
 } from "firebase/firestore";
 import { database } from "../FireBase/FirebaseProvider";
+import { Auth } from "./auth";
 
 export function PetList() {
   const dataRef = useRef<HTMLInputElement>(null);
@@ -61,6 +62,7 @@ export function PetList() {
         <button type="submit">Save</button>
       </form>
       <div className="petlist">
+        <Auth />
         <PetSearch />
         <HorizontialCard />
         <div className="grid-spacing">
