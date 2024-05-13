@@ -8,6 +8,5 @@ export interface AdminForm {
   gender: string;
   color: string;
   availability: boolean;
-  lifeStage: string;
   intakeDate: string;
 }

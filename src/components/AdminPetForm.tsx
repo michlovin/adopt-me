@@ -13,7 +13,7 @@ export function AdminPetForm() {
   const { id } = useParams();
   //collection references for pets
   const petsCollection = collection(database, "Adoptees");
-
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<AdminForm>({
     name: "",
@@ -25,7 +25,6 @@ export function AdminPetForm() {
     gender: "",
     color: "",
     availability: true,
-    lifeStage: "",
     intakeDate: "",
   });
 
@@ -47,10 +46,31 @@ export function AdminPetForm() {
     }
   };
 
+  //handles clearing the form data
+  function resetForm() {
+    setFormValues({
+      name: "",
+      species: "",
+      age: 0,
+      description: "",
+      image: "",
+      breed: "",
+      gender: "",
+      color: "",
+      availability: true,
+      intakeDate: "",
+    });
+  }
+
   function onSubmit(e: any) {
     e.preventDefault();
     postAdopteeAdminService(formValues);
     setFormSubmitted(true);
+    setSubmitSuccess(true);
+    setTimeout(() => {
+      setSubmitSuccess(false);
+    }, 2000);
+    resetForm();
   }
 
   return (
@@ -59,7 +79,7 @@ export function AdminPetForm() {
       <Row>
         <Col lg={3}></Col>
         <Col lg={4}>
-          {formSubmitted ? (
+          {formSubmitted && submitSuccess ? (
             <Alert>Form was Submitted Sucessfully by Admin</Alert>
           ) : (
             <Form
@@ -77,7 +97,6 @@ export function AdminPetForm() {
                   required
                 ></Form.Control>
               </Form.Group>
-
               <Form.Group controlId="species">
                 <Form.Label>Species</Form.Label>
                 <Form.Control
@@ -88,7 +107,6 @@ export function AdminPetForm() {
                   required
                 ></Form.Control>
               </Form.Group>
-
               <Form.Group controlId="age">
                 <Form.Label>Age</Form.Label>
                 <Form.Control
@@ -98,7 +116,6 @@ export function AdminPetForm() {
                   onChange={handleChange}
                 ></Form.Control>
               </Form.Group>
-
               <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
@@ -108,6 +125,52 @@ export function AdminPetForm() {
                   value={formValues.description}
                   onChange={handleChange}
                 ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="breed">
+                <Form.Label>Breed</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="breed"
+                  value={formValues.breed}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="gender">
+                <Form.Label>Gender</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="gender"
+                  value={formValues.gender}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="color">
+                <Form.Label>Color</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="color"
+                  value={formValues.color}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Check
+                type="checkbox"
+                id="availability"
+                label="available for adoption"
+                name="availability"
+                checked={formValues.availability}
+                onChange={handleChange}
+              />
+
+              <Form.Group controlId="intakeDate">
+                <Form.Label>intake Date</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="intakeDate"
+                  value={formValues.intakeDate}
+                  onChange={handleChange}
+                />
               </Form.Group>
 
               <Form.Group controlId="image">
@@ -120,65 +183,10 @@ export function AdminPetForm() {
                 />
               </Form.Group>
 
-              <Form.Group controlId="breed">
-                <Form.Label>Breed</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="breed"
-                  value={formValues.breed}
-                  onChange={handleChange}
-                />
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Default file input example</Form.Label>
+                <Form.Control type="file" />
               </Form.Group>
-
-              <Form.Group controlId="gender">
-                <Form.Label>Gender</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="gender"
-                  value={formValues.gender}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-
-              <Form.Group controlId="color">
-                <Form.Label>Color</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="color"
-                  value={formValues.color}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-
-              <Form.Check
-                type="checkbox"
-                id="availability"
-                label="available for adoption"
-                name="availability"
-                checked={formValues.availability}
-                onChange={handleChange}
-              />
-
-              <Form.Group controlId="lifeStage">
-                <Form.Label>Life Stage</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lifeStage"
-                  value={formValues.lifeStage}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-
-              <Form.Group controlId="intakeDate">
-                <Form.Label>intake Date</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="intakeDate"
-                  value={formValues.intakeDate}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-
               <Button onClick={onSubmit} variant="primary" type="submit">
                 Submit
               </Button>
@@ -189,7 +197,4 @@ export function AdminPetForm() {
       </Row>
     </div>
   );
-}
-function petsCollection(petsCollection: any) {
-  throw new Error("Function not implemented.");
 }

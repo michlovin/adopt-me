@@ -37,7 +37,7 @@ export function PetList() {
   };
 
   //fix this use effect do we really need unsubscribe here not sure it is being used
-  //typecasting was used to forece the type here because when data is fetch from the db you do not know what is coming so forcing type will fix this
+  //typecasting was used to force the type here because when data is fetch from the db you do not know what is coming so forcing type will fix this
   useEffect(() => {
     let queryRef = query(petsCollection, orderBy("name"));
     const unsubscribe = onSnapshot(queryRef, (querySnap) => {
@@ -57,10 +57,6 @@ export function PetList() {
 
   return (
     <>
-      <form onSubmit={submithandler}>
-        <input type="text" ref={dataRef} />
-        <button type="submit">Save</button>
-      </form>
       <div className="petlist">
         <Auth />
         <PetSearch />

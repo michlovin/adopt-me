@@ -12,12 +12,10 @@ export function PetIntakeForm() {
 
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [intakeValues, setintakeValues] = useState<IntakeForm>({
-    firstName: "",
-    lastName: "",
     date: "",
     surrenderReason: "",
     petName: "",
-    age: "",
+    age: 0,
     breed: "",
     species: "",
     hasKids: false,
@@ -70,28 +68,6 @@ export function PetIntakeForm() {
               </Alert>
             ) : (
               <Form onSubmit={onSubmit}>
-                <Form.Group controlId="firstName">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="firstName"
-                    value={intakeValues.firstName}
-                    onChange={handleChange}
-                    required
-                  ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId="lastName">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="lastName"
-                    value={intakeValues.lastName}
-                    onChange={handleChange}
-                    required
-                  ></Form.Control>
-                </Form.Group>
-
                 <Form.Group controlId="date">
                   <Form.Label>Date</Form.Label>
                   <Form.Control
@@ -127,7 +103,7 @@ export function PetIntakeForm() {
                 <Form.Group controlId="age">
                   <Form.Label>Animal's Age</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     name="age"
                     value={intakeValues.age}
                     onChange={handleChange}

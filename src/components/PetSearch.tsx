@@ -1,16 +1,43 @@
 import { useState, useEffect, SetStateAction } from "react";
 import axios from "axios";
 import { Card } from "react-bootstrap";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { database } from "../FireBase/FirebaseProvider";
+import { Pet } from "../models/Pet";
 
 export function PetSearch() {
   const [APIData, setAPIData] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const petsCollection = collection(database, "Adoptees");
+  const [pets, setPets] = useState<Pet[]>([]);
+
+  // useEffect(() => {
+  //   axios.get(`https://jsonplaceholder.typicode.com/users`).then((response) => {
+  //     setAPIData(response.data);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    axios.get(`https://jsonplaceholder.typicode.com/users`).then((response) => {
-      setAPIData(response.data);
+    let queryRef = query(petsCollection, orderBy("name"));
+    const unsubscribe = onSnapshot(queryRef, (querySnap) => {
+      if (querySnap.empty) {
+        console.log("No docs found");
+      } else {
+        let petsData: Pet[] = querySnap.docs.map((doc) => {
+          // let pet: Pet = ...doc.data();
+          return { ...doc.data() } as Pet;
+        });
+        console.log(petsData, "PET DATA");
+        setPets(petsData);
+      }
     });
+    return unsubscribe;
   }, []);
+
+  // function setPets(petsData: Pet[]) {
+  //   throw new Error("Function not implemented.");
+  // }
 
   const searchItems = (searchValue: SetStateAction<string>) => {
     setSearchInput(searchValue);
@@ -31,9 +58,9 @@ export function PetSearch() {
     <div style={{ padding: 20 }}>
       <input
         placeholder="Search..."
-        // onChange={(e) => searchItems(e.target.value)}
+        onChange={(e) => searchItems(e.target.value)}
       />
-      {/* <Card>
+      <Card>
         {searchInput.length > 1
           ? filteredResults.map((item) => {
               return (
@@ -55,7 +82,7 @@ export function PetSearch() {
                 </Card>
               );
             })}
-      </Card> */}
+      </Card>
     </div>
   );
 }
