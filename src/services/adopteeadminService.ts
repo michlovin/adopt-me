@@ -25,7 +25,7 @@ export const postAdopteeAdminService = async (
       //   lifeStage: formValues.lifeStage,
       //   intakeDate: formValues.intakeDate,
     });
-    console.log("Create business success!");
+    console.log("Create pet success!");
   } catch (ex: any) {
     console.log("FIRESTORE ADD FAILURE!", ex.message);
   }

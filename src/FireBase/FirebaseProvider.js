@@ -9,7 +9,7 @@ import {
   CollectionReference,
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,8 +28,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const startFirebase = initializeApp(firebaseConfig);
 //init services
+//basic auth
 export const auth = getAuth(startFirebase);
+//google auth
+export const googleProvider = new GoogleAuthProvider();
+//db
 export const database = getFirestore(startFirebase);
+//images
 export const storage = getStorage(startFirebase);
 
 export const FirebaseProvider = (props) => {

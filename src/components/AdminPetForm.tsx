@@ -104,7 +104,7 @@ export function AdminPetForm() {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  name="moreDescription"
+                  name="description"
                   value={formValues.description}
                   onChange={handleChange}
                 ></Form.Control>
@@ -150,16 +150,6 @@ export function AdminPetForm() {
                 />
               </Form.Group>
 
-              <Form.Group controlId="color">
-                <Form.Label>Color</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="color"
-                  value={formValues.color}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-
               <Form.Check
                 type="checkbox"
                 id="availability"
@@ -173,7 +163,7 @@ export function AdminPetForm() {
                 <Form.Label>Life Stage</Form.Label>
                 <Form.Control
                   type="text"
-                  name="availability"
+                  name="lifeStage"
                   value={formValues.lifeStage}
                   onChange={handleChange}
                 />
