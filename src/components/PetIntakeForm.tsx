@@ -3,13 +3,18 @@ import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { IntakeForm } from "../models/IntakeForm";
+import { database } from "../FireBase/FirebaseProvider";
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
 
 import { postIntake } from "../services/intakeService";
 import { TextCard } from "./TextCard";
 
 export function PetIntakeForm() {
   // eslint-disable-next-line no-unused-vars
-
+  const { id } = useParams();
+  const [pets, setPets] = useState<Pet[]>([]);
+  const surrenderCollectionRef = collection(database, "SurrenderedPets");
+  const [submitSurrenders, setSubmitSurrenders] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [intakeValues, setintakeValues] = useState<IntakeForm>({
     date: "",
@@ -28,6 +33,22 @@ export function PetIntakeForm() {
     healthConcerns: "",
     otherDescriptions: "",
   });
+
+  useEffect(() => {
+    let queryRef = query(surrenderCollectionRef);
+    const unsubscribe = onSnapshot(queryRef, (querySnap) => {
+      if (querySnap.empty) {
+        console.log("No docs found");
+      } else {
+        let petsData: Pet[] = querySnap.docs.map((doc) => {
+          return { ...doc.data() } as Pet;
+        });
+        console.log(petsData, "Surrender DATA");
+        setPets(petsData);
+      }
+    });
+    return unsubscribe;
+  }, []);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -230,4 +251,10 @@ export function PetIntakeForm() {
       </div>
     </>
   );
+}
+function db(db: any, arg1: string) {
+  throw new Error("Function not implemented.");
+}
+function petsCollection(petsCollection: any) {
+  throw new Error("Function not implemented.");
 }
