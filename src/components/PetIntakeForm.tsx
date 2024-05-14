@@ -145,7 +145,7 @@ export function PetIntakeForm() {
                 <Form.Group controlId="date">
                   <Form.Label>Date</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     name="date"
                     value={intakeValues.date}
                     onChange={handleChange}

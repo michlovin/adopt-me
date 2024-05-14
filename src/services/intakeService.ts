@@ -1,4 +1,5 @@
-import axios from "axios";
+import { addDoc, collection } from "firebase/firestore";
+import { database } from "../FireBase/FirebaseProvider";
 import { SurrenderedPet } from "../models/SurrenderedPet";
 
 const apiURL = process.env.REACT_APP_API_URL + "intake" || "";
@@ -6,6 +7,14 @@ const apiURL = process.env.REACT_APP_API_URL + "intake" || "";
 export const postIntake = async (
   intakeValues: SurrenderedPet
 ): Promise<any> => {
-  const response = await axios.post(`${apiURL}`, intakeValues);
-  return response.data;
+  console.log(intakeValues);
+  try {
+    let collectionRef = collection(database, "SurrenderedPets");
+    await addDoc(collectionRef, {
+      ...intakeValues,
+    });
+    console.log("Submitted surrendered pet successfully!");
+  } catch (ex) {
+    console.log("FIRESTORE ADD FAILURE! surrendered pet");
+  }
 };
