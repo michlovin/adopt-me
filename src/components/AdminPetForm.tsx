@@ -4,8 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AdminForm } from "../models/AdminForm";
 import { postAdopteeAdminService } from "../services/adopteeadminService";
 import { Pet } from "../models/Pet";
-import { collection, DocumentData, getDocs } from "firebase/firestore";
+import {
+  collection,
+  DocumentData,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { database } from "../FireBase/FirebaseProvider";
+import { PetList } from "./PetList";
 
 export function AdminPetForm() {
   // eslint-disable-next-line no-unused-vars
@@ -195,6 +202,7 @@ export function AdminPetForm() {
         </Col>
         <Col lg={3}></Col>
       </Row>
+      <PetList />
     </div>
   );
 }

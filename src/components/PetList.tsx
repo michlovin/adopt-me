@@ -10,6 +10,8 @@ import { FullWidthImageBanner } from "./FullWidthImageBanner";
 import handleSubmit from "../FireBase/firebasehandlesubmit";
 import {
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   onSnapshot,
   orderBy,
@@ -17,6 +19,16 @@ import {
 } from "firebase/firestore";
 import { database } from "../FireBase/FirebaseProvider";
 import { Auth } from "./auth";
+
+export const deleteAdminPetFromDB = async (id: string) => {
+  console.log(database, "TESTING FB");
+  try {
+    await deleteDoc(doc(database, "Adoptees", id));
+    console.log("Pet deleted successfully from admin intake/pet list!");
+  } catch (error) {
+    console.error("Error deleting pet:");
+  }
+};
 
 export function PetList() {
   const dataRef = useRef<HTMLInputElement>(null);
