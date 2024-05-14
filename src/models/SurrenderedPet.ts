@@ -1,5 +1,5 @@
-export interface IntakeForm {
-  date: string;
+export interface SurrenderedPet {
+  date: number;
   surrenderReason: string;
   petName: string;
   age: number;

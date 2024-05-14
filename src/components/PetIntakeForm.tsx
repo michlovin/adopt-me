@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { Pet } from "../models/Pet";
-import { IntakeForm } from "../models/IntakeForm";
+import { SurrenderedPet } from "../models/SurrenderedPet";
 import { database } from "../FireBase/FirebaseProvider";
 import {
   addDoc,
@@ -18,13 +17,13 @@ import { TextCard } from "./TextCard";
 export function PetIntakeForm() {
   // eslint-disable-next-line no-unused-vars
   const { id } = useParams();
-  const [pets, setPets] = useState<Pet[]>([]);
+  const [pets, setPets] = useState<SurrenderedPet[]>([]);
   const surrenderCollectionRef = collection(database, "SurrenderedPets");
   const [submitSurrenders, setSubmitSurrenders] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
-  const [intakeValues, setintakeValues] = useState<IntakeForm>({
-    date: "",
+  const [intakeValues, setintakeValues] = useState<SurrenderedPet>({
+    date: 0,
     surrenderReason: "",
     petName: "",
     age: 0,
@@ -41,14 +40,17 @@ export function PetIntakeForm() {
     otherDescriptions: "",
   });
 
+  //code fetches data from a Firestore collection (surrenderCollectionRef),
+  //listens for any changes to that data, and updates the component's state (pets) accordingly.
+  //It runs this process once when the component mounts.
   useEffect(() => {
     let queryRef = query(surrenderCollectionRef);
     const unsubscribe = onSnapshot(queryRef, (querySnap) => {
       if (querySnap.empty) {
         console.log("No docs found");
       } else {
-        let petsData: Pet[] = querySnap.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id } as unknown as Pet;
+        let petsData: SurrenderedPet[] = querySnap.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id } as unknown as SurrenderedPet;
         });
         console.log(petsData, "Surrender DATA");
         setPets(petsData);
@@ -77,7 +79,7 @@ export function PetIntakeForm() {
   //handles clearing the form data
   function resetForm() {
     setintakeValues({
-      date: "",
+      date: 0,
       surrenderReason: "",
       petName: "",
       age: 0,
@@ -300,12 +302,23 @@ export function PetIntakeForm() {
           <Col lg={3}></Col>
         </Row>
       </div>
+      {/* Display surrendered pets */}
+      <div>
+        <h2>Surrendered Pets</h2>
+        {pets.map((pet) => (
+          <div>
+            <h3>{pet.petName}</h3>
+            <p>Breed: {pet.breed}</p>
+            <p>Age: {pet.age}</p>
+            <p>reason: {pet.surrenderReason}</p>
+            <p>description: {pet.otherDescriptions}</p>
+            <p>date: {pet.date}</p>
+            <p>kids: {pet.hasKids}</p>
+            <p>fixed: {pet.isFixed}</p>
+          </div>
+        ))}
+      </div>
+      );
     </>
   );
-}
-function db(db: any, arg1: string) {
-  throw new Error("Function not implemented.");
-}
-function petsCollection(petsCollection: any) {
-  throw new Error("Function not implemented.");
 }
