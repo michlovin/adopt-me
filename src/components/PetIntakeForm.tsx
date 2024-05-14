@@ -4,7 +4,13 @@ import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { IntakeForm } from "../models/IntakeForm";
 import { database } from "../FireBase/FirebaseProvider";
-import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
 
 import { postIntake } from "../services/intakeService";
 import { TextCard } from "./TextCard";
@@ -16,6 +22,7 @@ export function PetIntakeForm() {
   const surrenderCollectionRef = collection(database, "SurrenderedPets");
   const [submitSurrenders, setSubmitSurrenders] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
   const [intakeValues, setintakeValues] = useState<IntakeForm>({
     date: "",
     surrenderReason: "",
@@ -41,7 +48,7 @@ export function PetIntakeForm() {
         console.log("No docs found");
       } else {
         let petsData: Pet[] = querySnap.docs.map((doc) => {
-          return { ...doc.data() } as Pet;
+          return { ...doc.data(), id: doc.id } as unknown as Pet;
         });
         console.log(petsData, "Surrender DATA");
         setPets(petsData);
@@ -67,11 +74,55 @@ export function PetIntakeForm() {
       }));
     }
   };
+  //handles clearing the form data
+  function resetForm() {
+    setintakeValues({
+      date: "",
+      surrenderReason: "",
+      petName: "",
+      age: 0,
+      breed: "",
+      species: "",
+      hasKids: false,
+      hasOtherPets: false,
+      otherPets: "",
+      isFixed: false,
+      gender: false,
+      vet: "",
+      vaccinations: "",
+      healthConcerns: "",
+      otherDescriptions: "",
+    });
+  }
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  // const onSubmitSurrender = async () => {
+  //   await addDoc(surrenderCollectionRef, {
+  //     date: newDate,
+  //     surrenderReason: newSurrenderReason,
+  //     petName: newPetName,
+  //     age: newAge,
+  //     breed: newBreed,
+  //     species: newSpecies,
+  //     hasKids: newHasKids,
+  //     hasOtherPets: newHasOtherPets,
+  //     otherPets: newOtherPets,
+  //     isFixed: newIsFixed,
+  //     gender: newGender,
+  //     vet: newVet,
+  //     vaccinations: newVaccinations,
+  //     healthConcerns: newHealthConcerns,
+  //     otherDescriptions: newOtherDesciption,
+  //   });
+  // };
+
+  function onSubmit(e: any) {
     e.preventDefault();
     postIntake(intakeValues);
     setFormSubmitted(true);
+    setTimeout(() => {
+      setSubmitSuccess(false);
+    }, 2000);
+    resetForm();
   }
 
   return (
@@ -240,7 +291,7 @@ export function PetIntakeForm() {
                   />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button onClick={onSubmit} variant="primary" type="submit">
                   Submit
                 </Button>
               </Form>

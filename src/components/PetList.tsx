@@ -7,7 +7,6 @@ import "./css/petlist.css";
 import { HorizontialCard } from "./HorizontalCard";
 import { TextCard } from "./TextCard";
 import { FullWidthImageBanner } from "./FullWidthImageBanner";
-import { PetSearch } from "./PetSearch";
 import handleSubmit from "../FireBase/firebasehandlesubmit";
 import {
   collection,
@@ -23,6 +22,8 @@ export function PetList() {
   const dataRef = useRef<HTMLInputElement>(null);
   const [pets, setPets] = useState<Pet[]>([]); //yay this is not wrong
   const petsCollection = collection(database, "Adoptees");
+  console.log(pets, "is this pets");
+  const [filteredPets, setFilteredPets] = useState([]);
   //parent of pet card
   //taking data from parent to child is props
   //UseEffect what do you want to do and when do you want to run it
@@ -55,15 +56,35 @@ export function PetList() {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    const syntheticEvent = {
+      target: { value: "" },
+    } as React.ChangeEvent<HTMLInputElement>;
+    onInputChange(syntheticEvent);
+  }, [pets]);
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newpetList: any = pets.filter((pet: any) => {
+      return (
+        pet.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        pet.breed.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        pet.description.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        pet.gender.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        pet.species.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    });
+    setFilteredPets(newpetList);
+  };
+
   return (
     <>
       <div className="petlist">
         <Auth />
-        <PetSearch />
+        <input type="text" placeholder="Search..." onChange={onInputChange} />
         <HorizontialCard />
         <div className="grid-spacing">
           <Row>
-            {pets.map((pet) => (
+            {filteredPets.map((pet) => (
               <Col lg={4}>
                 <PetCard pet={pet} />
                 <br />
