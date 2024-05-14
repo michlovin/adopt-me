@@ -8,7 +8,6 @@ import { CalenderModal } from "./CalenderModal";
 import React, { useState } from "react";
 import { database } from "../FireBase/FirebaseProvider";
 import { collection, deleteDoc, doc } from "firebase/firestore";
-import { deleteAdminPetFromDB } from "./PetList";
 
 //using props to bring in information
 //defining the structure of data you can intake
@@ -28,6 +27,16 @@ export function PetCard(props: PetCardProps) {
   //     console.error("Error deleting pet:");
   //   }
   // };
+
+  const deleteAdminPetFromDB = async (id: string) => {
+    console.log(database, "TESTING FB");
+    try {
+      await deleteDoc(doc(database, "Adoptees", id));
+      console.log("Pet deleted successfully from admin intake/pet list!");
+    } catch (error) {
+      console.error("Error deleting pet:");
+    }
+  };
 
   return (
     <Card className="space-below">

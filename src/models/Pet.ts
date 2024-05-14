@@ -1,4 +1,6 @@
 export interface Pet {
+  gender: any;
+  species: any;
   id: string;
   name: string;
   animalType: "dog" | "cat";
