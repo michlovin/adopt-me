@@ -99,6 +99,7 @@ export function PetList() {
         <Auth />
         <input type="text" placeholder="Search..." onChange={onInputChange} />
         <HorizontialCard />
+        <FullWidthImageBanner />
         <div className="grid-spacing">
           <Row>
             {filteredPets.map((pet: any) => (

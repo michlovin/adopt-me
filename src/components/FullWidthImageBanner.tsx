@@ -9,6 +9,12 @@ export function FullWidthImageBanner() {
           <div className="item">
             <img src={banner} alt="image"></img>
             <img src={banner} alt="image"></img>
+            <img src={banner} alt="image"></img>
+            <img src={banner} alt="image"></img>
+            <img src={banner} alt="image"></img>
+            <img src={banner} alt="image"></img>
+            <img src={banner} alt="image"></img>
+            <img src={banner} alt="image"></img>
           </div>
         </div>
         <div className="fade"></div>

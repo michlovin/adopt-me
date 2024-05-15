@@ -18,6 +18,8 @@ import {
 } from "firebase/firestore";
 import { database } from "../FireBase/FirebaseProvider";
 import { PetList } from "./PetList";
+import { TextCard } from "./TextCard";
+import "./css/adminpetform.css";
 
 interface AdminPetProps {
   edit: boolean;
@@ -130,126 +132,142 @@ export function AdminPetForm(props: AdminPetProps) {
 
   return (
     <div>
-      <div>Fill out the intake from for this Pet</div>
-      <Row>
-        <Col lg={3}></Col>
-        <Col lg={4}>
-          {formSubmitted && submitSuccess ? (
-            <Alert>Form was Submitted Sucessfully by Admin</Alert>
-          ) : (
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="name"
-                  value={formValues.name}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="species">
-                <Form.Label>Species</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="species"
-                  value={formValues.species}
-                  onChange={handleChange}
-                  required
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="age">
-                <Form.Label>Age</Form.Label>
-                <Form.Control
-                  type="number"
-                  name="age"
-                  value={formValues.age}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="description">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  name="description"
-                  value={formValues.description}
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
+      <TextCard />
 
-              <Form.Group controlId="breed">
-                <Form.Label>Breed</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="breed"
-                  value={formValues.breed}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="gender">
-                <Form.Label>Gender</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="gender"
-                  value={formValues.gender}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="color">
-                <Form.Label>Color</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="color"
-                  value={formValues.color}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Check
-                type="checkbox"
-                id="availability"
-                label="available for adoption"
-                name="availability"
-                checked={formValues.availability}
-                onChange={handleChange}
-              />
+      <div className="intakepage">
+        <div className="text">
+          <h2 className="title">
+            Fill out the intake from for the Pet you wish to rehome
+          </h2>
+          <p className="paragraph">
+            If you are a pet owner seeking assistance, our community services
+            offer valuable resources. Should you find yourself unable to care
+            for your animal, we encourage you to contact the Adopt Me. Please
+            review the information on this page and complete the Surrender
+            Intake Form. After submitting the form, we will reach out with
+            further instructions.
+          </p>
+        </div>
+        <Row>
+          <Col lg={4}></Col>
+          <Col lg={4}>
+            {formSubmitted && submitSuccess ? (
+              <Alert>Form was Submitted Sucessfully by Admin</Alert>
+            ) : (
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <Form.Group controlId="name">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    value={formValues.name}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId="species">
+                  <Form.Label>Species</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="species"
+                    value={formValues.species}
+                    onChange={handleChange}
+                    required
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId="age">
+                  <Form.Label>Age</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="age"
+                    value={formValues.age}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId="description">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="description"
+                    value={formValues.description}
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId="intakeDate">
-                <Form.Label>intake Date</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="intakeDate"
-                  value={formValues.intakeDate}
+                <Form.Group controlId="breed">
+                  <Form.Label>Breed</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="breed"
+                    value={formValues.breed}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group controlId="gender">
+                  <Form.Label>Gender</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="gender"
+                    value={formValues.gender}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group controlId="color">
+                  <Form.Label>Color</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="color"
+                    value={formValues.color}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Check
+                  type="checkbox"
+                  id="availability"
+                  label="available for adoption"
+                  name="availability"
+                  checked={formValues.availability}
                   onChange={handleChange}
                 />
-              </Form.Group>
 
-              <Form.Group controlId="image">
-                <Form.Label>Image</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="image"
-                  value={formValues.image}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+                <Form.Group controlId="intakeDate">
+                  <Form.Label>intake Date</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="intakeDate"
+                    value={formValues.intakeDate}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Default file input example</Form.Label>
-                <Form.Control type="file" />
-              </Form.Group>
-              <Button onClick={onSubmit} variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          )}
-        </Col>
-        <Col lg={3}></Col>
-      </Row>
+                <Form.Group controlId="image">
+                  <Form.Label>Image</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="image"
+                    value={formValues.image}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formFile" className="mb-3">
+                  <Form.Label>Default file input example</Form.Label>
+                  <Form.Control type="file" />
+                </Form.Group>
+                <Button onClick={onSubmit} variant="secondary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+            )}
+          </Col>
+          <Col lg={4}></Col>
+        </Row>
+      </div>
     </div>
   );
 }
