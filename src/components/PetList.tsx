@@ -33,7 +33,7 @@ export async function getPetById(
     if (petDocSnap.exists()) {
       const petData = petDocSnap.data();
       console.log(petData, petDocRef, "what is this?");
-      return petData as Pet;
+      return { ...petData, id } as Pet;
     } else {
       console.log("No such document!");
       return null;

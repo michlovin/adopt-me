@@ -8,6 +8,7 @@ import { PetList } from "./components/PetList";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { PetIntakeForm } from "./components/PetIntakeForm";
 import { AdminPetForm } from "./components/AdminPetForm";
+import { PetadoptionForm } from "./components/PetAdoptionForm";
 //todo pass props correctly from details card
 function App() {
   return (
@@ -16,10 +17,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<PetList></PetList>}></Route>
-          <Route
-            path="/details/:id"
-            element={<PetDetails></PetDetails>}
-          ></Route>
+          <Route path="/details/:id" element={<PetDetails />}></Route>
+          <Route path="/adoptions/:id" element={<PetadoptionForm />}></Route>
           <Route path="/resources" element={<PetIntakeForm />}></Route>
           <Route
             path="/adminintake"

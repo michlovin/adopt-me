@@ -5,9 +5,12 @@ import { Pet } from "../models/Pet";
 import { AdoptionForm } from "../models/AdoptionForm";
 import { postAdoption } from "../services/adoptionService";
 import "./css/petadoptionform.css";
+import { getPetById } from "./PetList";
+import { database } from "../FireBase/FirebaseProvider";
 
 export function PetadoptionForm() {
   // eslint-disable-next-line no-unused-vars
+  const { id } = useParams();
   const [pet, setPet] = useState<Pet | null>(null);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<AdoptionForm>({
@@ -20,6 +23,13 @@ export function PetadoptionForm() {
     hasOtherPets: false,
     moreDescription: "",
   });
+  debugger;
+  //grabs the id of the pet in the form
+  useEffect(() => {
+    const res = getPetById(database, id ?? "").then((data) => {
+      setPet(data);
+    });
+  }, []);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
