@@ -94,22 +94,3 @@ export async function getAllData(database) {
   console.log(dbpetList, "dbpetList HERE");
   return dbpetList;
 }
-
-// //ADDING ADOPTION DOCUMENTS
-// const addPetToAdoptionForm = document.querySelector(".add");
-// addPetToAdoptionForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   addDoc(petsCollection, {
-//     name: addPetToAdoptionForm.name.value,
-//     description: addPetToAdoptionForm.description.value,
-//   }).then(() => {
-//     addPetToAdoptionForm.reset;
-//   });
-// });
-
-// //DELETING ADOPTION DOCS
-// const deleteAdoptionForm = document.querySelector(".delete");
-// deleteAdoptionForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-// });

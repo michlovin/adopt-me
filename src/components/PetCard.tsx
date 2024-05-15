@@ -18,26 +18,6 @@ interface PetCardProps {
 export function PetCard(props: PetCardProps) {
   const petsCollection = collection(database, "Adoptees");
 
-  // const deleteAdminPetFromDB = async (id: string) => {
-  //   console.log(database, "TESTING FB");
-  //   try {
-  //     await deleteDoc(doc(database, "Adoptees", id));
-  //     console.log("Pet deleted successfully from admin intake/pet list!");
-  //   } catch (error) {
-  //     console.error("Error deleting pet:");
-  //   }
-  // };
-
-  // const deleteAdminPetFromDB = async (id: string) => {
-  //   console.log(database, "TESTING FB");
-  //   try {
-  //     await deleteDoc(doc(database, "Adoptees", id));
-  //     console.log("Pet deleted successfully from admin intake/pet list!");
-  //   } catch (error) {
-  //     console.error("Error deleting pet:");
-  //   }
-  // };
-
   const deleteAdminPetFromDB = async (id: string) => {
     console.log(id, "ID IS HERE");
     const res = await deleteDoc(doc(database, "Adoptees", id));

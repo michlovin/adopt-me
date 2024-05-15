@@ -97,26 +97,6 @@ export function PetIntakeForm() {
     });
   }
 
-  // const onSubmitSurrender = async () => {
-  //   await addDoc(surrenderCollectionRef, {
-  //     date: newDate,
-  //     surrenderReason: newSurrenderReason,
-  //     petName: newPetName,
-  //     age: newAge,
-  //     breed: newBreed,
-  //     species: newSpecies,
-  //     hasKids: newHasKids,
-  //     hasOtherPets: newHasOtherPets,
-  //     otherPets: newOtherPets,
-  //     isFixed: newIsFixed,
-  //     gender: newGender,
-  //     vet: newVet,
-  //     vaccinations: newVaccinations,
-  //     healthConcerns: newHealthConcerns,
-  //     otherDescriptions: newOtherDesciption,
-  //   });
-  // };
-
   function onSubmit(e: any) {
     e.preventDefault();
     postIntake(intakeValues);
