@@ -21,7 +21,14 @@ function App() {
             element={<PetDetails></PetDetails>}
           ></Route>
           <Route path="/resources" element={<PetIntakeForm />}></Route>
-          <Route path="/adminintake" element={<AdminPetForm />}></Route>
+          <Route
+            path="/adminintake"
+            element={<AdminPetForm edit={false} />}
+          ></Route>
+          <Route
+            path="/editadminintake/:id"
+            element={<AdminPetForm edit={true} />}
+          ></Route>
           {/* <Route path="/events" element={<EventsPage />}></Route> */}
           {/* <Route path="/donate" element={<DonatePage/>}></Route> */}
         </Routes>

@@ -28,14 +28,19 @@ export function PetCard(props: PetCardProps) {
   //   }
   // };
 
+  // const deleteAdminPetFromDB = async (id: string) => {
+  //   console.log(database, "TESTING FB");
+  //   try {
+  //     await deleteDoc(doc(database, "Adoptees", id));
+  //     console.log("Pet deleted successfully from admin intake/pet list!");
+  //   } catch (error) {
+  //     console.error("Error deleting pet:");
+  //   }
+  // };
+
   const deleteAdminPetFromDB = async (id: string) => {
-    console.log(database, "TESTING FB");
-    try {
-      await deleteDoc(doc(database, "Adoptees", id));
-      console.log("Pet deleted successfully from admin intake/pet list!");
-    } catch (error) {
-      console.error("Error deleting pet:");
-    }
+    console.log(id, "ID IS HERE");
+    const res = await deleteDoc(doc(database, "Adoptees", id));
   };
 
   return (
@@ -68,6 +73,13 @@ export function PetCard(props: PetCardProps) {
           <BsPlusCircle className="svg" />
           Delete {props.pet.name}
         </button>
+        <Link
+          to={`/editadminintake/${props.pet.id}`}
+          className="btn btn-success ml-2"
+        >
+          <BsPlusCircle className="svg" />
+          Edit {props.pet.name}
+        </Link>
         <></>
       </Card.Footer>
     </Card>

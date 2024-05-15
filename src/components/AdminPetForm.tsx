@@ -2,26 +2,35 @@ import { useEffect, useState } from "react";
 import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { AdminForm } from "../models/AdminForm";
-import { postAdopteeAdminService } from "../services/adopteeadminService";
+import {
+  editAdminPet,
+  postAdopteeAdminService,
+} from "../services/adopteeadminService";
 import { Pet } from "../models/Pet";
 import {
   collection,
   DocumentData,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc,
+  getDoc,
 } from "firebase/firestore";
 import { database } from "../FireBase/FirebaseProvider";
 import { PetList } from "./PetList";
 
-export function AdminPetForm() {
+interface AdminPetProps {
+  edit: boolean;
+}
+
+export function AdminPetForm(props: AdminPetProps) {
   // eslint-disable-next-line no-unused-vars
   const [pets, setPets] = useState<Pet[]>([]);
   const { id } = useParams();
   //collection references for pets
   const petsCollection = collection(database, "Adoptees");
-  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<AdminForm>({
     name: "",
     species: "",
@@ -53,6 +62,11 @@ export function AdminPetForm() {
     }
   };
 
+  //updated form state
+  const [updatedName, setupdatedName] = useState("");
+  const [updatedDescription, setupdatedDescription] = useState("");
+  const [updatedAge, setupdatedAge] = useState("");
+
   //handles clearing the form data
   function resetForm() {
     setFormValues({
@@ -69,9 +83,43 @@ export function AdminPetForm() {
     });
   }
 
+  useEffect(() => {
+    const getPet = async () => {
+      if (id) {
+        const docRef = doc(database, "Adoptees", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const pet = docSnap.data();
+          setFormValues({
+            name: pet.name,
+            species: pet.species,
+            age: pet.age,
+            description: pet.description,
+            image: pet.image,
+            breed: pet.breed,
+            gender: pet.gender,
+            color: pet.color,
+            availability: pet.availability,
+            intakeDate: pet.intakeDate,
+          });
+        } else {
+          console.log("No such document!");
+        }
+      }
+    };
+    if (id) {
+      getPet();
+    }
+  }, [id]);
+
   function onSubmit(e: any) {
     e.preventDefault();
-    postAdopteeAdminService(formValues);
+    if (props.edit && id) {
+      editAdminPet(id, formValues);
+    } else {
+      postAdopteeAdminService(formValues);
+    }
     setFormSubmitted(true);
     setSubmitSuccess(true);
     setTimeout(() => {
@@ -202,7 +250,6 @@ export function AdminPetForm() {
         </Col>
         <Col lg={3}></Col>
       </Row>
-      <PetList />
     </div>
   );
 }
