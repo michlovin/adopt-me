@@ -8,11 +8,18 @@ import "./css/petdetailscard.css";
 import { BsClipboard2Check } from "react-icons/bs";
 
 import { BsFileText } from "react-icons/bs";
+import { getPetById } from "./PetList";
+import { database } from "../FireBase/FirebaseProvider";
 
 export default function PetDetails() {
   const { id } = useParams();
   const [pet, setPet] = useState<Pet | null>(null);
 
+  useEffect(() => {
+    const res = getPetById(database, id ?? "").then((data) => {
+      setPet(data);
+    });
+  }, []);
   //to do:style this card better
   return (
     <div className="PetDetails">

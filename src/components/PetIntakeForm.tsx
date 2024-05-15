@@ -110,10 +110,23 @@ export function PetIntakeForm() {
   return (
     <>
       <TextCard />
-      <div>
-        <div>Fill out the surrender form for this animal</div>
+      <div className="intakepage">
+        <div className="text">
+          <h2 className="title">
+            Fill out the intake from for the Pet you wish to rehome
+          </h2>
+          <p className="paragraph">
+            If you are a pet owner seeking assistance, our community services
+            offer valuable resources. Should you find yourself unable to care
+            for your animal, we encourage you to contact the Adopt Me. Please
+            review the information on this page and complete the Surrender
+            Intake Form. After submitting the form, we will reach out with
+            further instructions.
+          </p>
+        </div>
+
         <Row>
-          <Col lg={3}></Col>
+          <Col lg={4}></Col>
           <Col lg={4}>
             {formSubmitted ? (
               <Alert>

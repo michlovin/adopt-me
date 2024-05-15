@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Pet } from "../models/Pet";
 import { AdoptionForm } from "../models/AdoptionForm";
 import { postAdoption } from "../services/adoptionService";
+import "./css/petadoptionform.css";
 
 export function PetadoptionForm() {
   // eslint-disable-next-line no-unused-vars
