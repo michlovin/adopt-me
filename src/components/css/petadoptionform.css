@@ -1,18 +1,22 @@
 .intakepage {
-    margin: 0 auto;
-    background-color: #f2f6c3;
-  }
-  
-  .title {
-    font-size: 30px;
-  }
-  
-  .paragraph {
-    padding-left: 30%;
-    padding-right: 30%;
-  }
-  
-  Form {
-    padding-bottom: 3%;
-  }
-  
+  margin: 0 auto;
+  background-color: #f2f6c3;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.paragraph {
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+Form {
+  text-align: left;
+}
+
+Form .btn {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

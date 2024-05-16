@@ -56,10 +56,17 @@ export function PetadoptionForm() {
   }
 
   return (
-    <div>
-      <div>Fill out the adoption form for this animal</div>
+    <div className="intakepage">
+      <div className="text">
+        <h2 className="title">Fill out the adoption form for this animal</h2>
+        <p className="paragraph">
+          Thinking of adopting a new family member, fill out this form and one
+          of our staff will get back to you.
+        </p>
+      </div>
+
       <Row>
-        <Col lg={3}></Col>
+        <Col lg={4}></Col>
         <Col lg={4}>
           {formSubmitted ? (
             <Alert>
