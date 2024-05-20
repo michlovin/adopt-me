@@ -12,7 +12,7 @@ export const postAdopteeAdminService = async (
     let collectionRef = collection(database, "Adoptees");
     await addDoc(collectionRef, {
       ...formValues,
-      // userId: auth?.currentUser?.uid,
+      userId: auth?.currentUser?.uid,
     });
     console.log("Create pet success!");
   } catch (ex: any) {

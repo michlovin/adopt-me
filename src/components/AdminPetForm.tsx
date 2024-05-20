@@ -16,10 +16,11 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
-import { database } from "../FireBase/FirebaseProvider";
+import { database, storage } from "../FireBase/FirebaseProvider";
 import { PetList } from "./PetList";
 import { TextCard } from "./TextCard";
 import "./css/adminpetform.css";
+import { ref, uploadBytes } from "firebase/storage";
 
 interface AdminPetProps {
   edit: boolean;
@@ -44,7 +45,9 @@ export function AdminPetForm(props: AdminPetProps) {
     color: "",
     availability: true,
     intakeDate: "",
+    formFile: "",
   });
+  const [fileUpload, setFileUpload] = useState<File | null>(null);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +85,7 @@ export function AdminPetForm(props: AdminPetProps) {
       color: "",
       availability: true,
       intakeDate: "",
+      formFile: null,
     });
   }
 
@@ -104,6 +108,7 @@ export function AdminPetForm(props: AdminPetProps) {
             color: pet.color,
             availability: pet.availability,
             intakeDate: pet.intakeDate,
+            formFile: pet.formFile,
           });
         } else {
           console.log("No such document!");
@@ -114,6 +119,16 @@ export function AdminPetForm(props: AdminPetProps) {
       getPet();
     }
   }, [id]);
+
+  const uploadFile = async () => {
+    if (!fileUpload) return;
+    const filesFolderRef = ref(storage, `projectFiles/${fileUpload.name}`);
+    try {
+      await uploadBytes(filesFolderRef, fileUpload);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   function onSubmit(e: any) {
     e.preventDefault();
@@ -240,7 +255,7 @@ export function AdminPetForm(props: AdminPetProps) {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="image">
+                {/* <Form.Group controlId="image">
                   <Form.Label>Image</Form.Label>
                   <Form.Control
                     type="text"
@@ -248,12 +263,26 @@ export function AdminPetForm(props: AdminPetProps) {
                     value={formValues.image}
                     onChange={handleChange}
                   />
-                </Form.Group>
+                </Form.Group> */}
 
-                <Form.Group controlId="formFile" className="mb-3">
+                {/* <Form.Group controlId="formFile" className="mb-3">
                   <Form.Label>Default file input example</Form.Label>
-                  <Form.Control type="file" />
-                </Form.Group>
+                  <Form.Control
+                    type="file"
+                    value={formValues.formFile}
+                    onChange={(event) => setFileUpload(event?.target.files[0])}
+                    // onChange={handleChange}
+                  />
+                </Form.Group> */}
+
+                <div>
+                  <input
+                    type="file"
+                    onChange={(e) => setFileUpload(e.target.files[0])}
+                  />
+                  <button onClick={uploadFile}> Upload File </button>
+                </div>
+
                 <Button onClick={onSubmit} variant="secondary" type="submit">
                   Submit
                 </Button>
