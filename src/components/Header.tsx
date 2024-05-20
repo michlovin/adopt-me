@@ -4,7 +4,7 @@ import logo from "./assets/logo.jpg";
 
 export function Header() {
   return (
-    <div className="Header">
+    <div className="header">
       <Navbar expand="lg" data-bs-theme="light">
         <Container fluid>
           <Navbar.Brand href="/">

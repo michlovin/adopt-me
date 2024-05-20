@@ -11,7 +11,7 @@
   justify-content: space-around;
   width: fit-content;
   white-space: nowrap;
-  animation: loop 30s linear infinite;
+  animation: loop 70s linear infinite;
 }
 .fade {
   width: 100%;
