@@ -1,5 +1,5 @@
 export interface AdminForm {
-  formFile: string | number | string[] | undefined | null;
+  // formFile: string | number | string[] | undefined | null;
   name: string;
   species: string;
   age: number;

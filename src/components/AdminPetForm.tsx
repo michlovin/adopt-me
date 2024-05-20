@@ -45,9 +45,9 @@ export function AdminPetForm(props: AdminPetProps) {
     color: "",
     availability: true,
     intakeDate: "",
-    formFile: "",
+    // formFile: "",
   });
-  const [fileUpload, setFileUpload] = useState<File | null>(null);
+  // const [fileUpload, setFileUpload] = useState<File | null>(null);
 
   //handles the changes to the form through destructing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +85,7 @@ export function AdminPetForm(props: AdminPetProps) {
       color: "",
       availability: true,
       intakeDate: "",
-      formFile: null,
+      // formFile: null,
     });
   }
 
@@ -108,7 +108,7 @@ export function AdminPetForm(props: AdminPetProps) {
             color: pet.color,
             availability: pet.availability,
             intakeDate: pet.intakeDate,
-            formFile: pet.formFile,
+            // formFile: pet.formFile,
           });
         } else {
           console.log("No such document!");
@@ -120,15 +120,15 @@ export function AdminPetForm(props: AdminPetProps) {
     }
   }, [id]);
 
-  const uploadFile = async () => {
-    if (!fileUpload) return;
-    const filesFolderRef = ref(storage, `projectFiles/${fileUpload.name}`);
-    try {
-      await uploadBytes(filesFolderRef, fileUpload);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // const uploadFile = async () => {
+  //   if (!fileUpload) return;
+  //   const filesFolderRef = ref(storage, `adoptees/${fileUpload?.name}`);
+  //   try {
+  //     await uploadBytes(filesFolderRef, fileUpload);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   function onSubmit(e: any) {
     e.preventDefault();
@@ -265,23 +265,18 @@ export function AdminPetForm(props: AdminPetProps) {
                   />
                 </Form.Group> */}
 
-                {/* <Form.Group controlId="formFile" className="mb-3">
+                <Form.Group controlId="formFile" className="mb-3">
                   <Form.Label>Default file input example</Form.Label>
-                  <Form.Control
-                    type="file"
-                    value={formValues.formFile}
-                    onChange={(event) => setFileUpload(event?.target.files[0])}
-                    // onChange={handleChange}
-                  />
-                </Form.Group> */}
+                  <Form.Control type="file" />
+                </Form.Group>
 
-                <div>
+                {/* <div>
                   <input
                     type="file"
-                    onChange={(e) => setFileUpload(e.target.files[0])}
+                    onChange={(e) => setFileUpload(e?.target?.files[0])}
                   />
                   <button onClick={uploadFile}> Upload File </button>
-                </div>
+                </div> */}
 
                 <Button onClick={onSubmit} variant="secondary" type="submit">
                   Submit
